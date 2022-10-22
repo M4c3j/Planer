@@ -7,16 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520C6C1B28BA7FED000DC237 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C6C1A28BA7FED000DC237 /* DateExtensions.swift */; };
+		520C6C1E28BA8010000DC237 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C6C1D28BA8010000DC237 /* CalendarViewModel.swift */; };
+		520C6C2128BA8039000DC237 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C6C2028BA8039000DC237 /* CalendarModel.swift */; };
+		520C6C2328BA8048000DC237 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C6C2228BA8048000DC237 /* DayModel.swift */; };
+		520C6C2728BA896E000DC237 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C6C2628BA896E000DC237 /* TasksView.swift */; };
+		520C6C2928BAB4F6000DC237 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C6C2828BAB4F6000DC237 /* User.swift */; };
+		522DE05B28D64425001CB165 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DE05A28D64425001CB165 /* AddTaskView.swift */; };
+		5247CDC528BABE6400EAF249 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5247CDC428BABE6400EAF249 /* TasksViewModel.swift */; };
+		525D03A028B3F42A00B7ACDB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D039F28B3F42A00B7ACDB /* UIColorExtension.swift */; };
+		52B19B9928BBE7260047B983 /* CodableColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B19B9828BBE7260047B983 /* CodableColorExtension.swift */; };
 		52F49D9028B29FE800BEED67 /* PlanerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F49D8F28B29FE800BEED67 /* PlanerApp.swift */; };
-		52F49D9228B29FE800BEED67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F49D9128B29FE800BEED67 /* ContentView.swift */; };
+		52F49D9228B29FE800BEED67 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F49D9128B29FE800BEED67 /* CalendarView.swift */; };
 		52F49D9428B29FE900BEED67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F49D9328B29FE900BEED67 /* Assets.xcassets */; };
 		52F49D9728B29FE900BEED67 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F49D9628B29FE900BEED67 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		520C6C1A28BA7FED000DC237 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		520C6C1D28BA8010000DC237 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		520C6C2028BA8039000DC237 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
+		520C6C2228BA8048000DC237 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
+		520C6C2628BA896E000DC237 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		520C6C2828BAB4F6000DC237 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		522DE05A28D64425001CB165 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		5247CDC428BABE6400EAF249 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
+		525D039F28B3F42A00B7ACDB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		52B19B9828BBE7260047B983 /* CodableColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableColorExtension.swift; sourceTree = "<group>"; };
 		52F49D8C28B29FE800BEED67 /* Planer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F49D8F28B29FE800BEED67 /* PlanerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanerApp.swift; sourceTree = "<group>"; };
-		52F49D9128B29FE800BEED67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		52F49D9128B29FE800BEED67 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		52F49D9328B29FE900BEED67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52F49D9628B29FE900BEED67 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,6 +52,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		520C6C1928BA7FD6000DC237 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				52B19B9828BBE7260047B983 /* CodableColorExtension.swift */,
+				520C6C1A28BA7FED000DC237 /* DateExtensions.swift */,
+				525D039F28B3F42A00B7ACDB /* UIColorExtension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		520C6C1C28BA8002000DC237 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				520C6C2528BA807B000DC237 /* ViewModels */,
+				520C6C2428BA806E000DC237 /* Views */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		520C6C1F28BA8029000DC237 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				520C6C2028BA8039000DC237 /* CalendarModel.swift */,
+				520C6C2228BA8048000DC237 /* DayModel.swift */,
+				520C6C2828BAB4F6000DC237 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		520C6C2428BA806E000DC237 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				52F49D9128B29FE800BEED67 /* CalendarView.swift */,
+				522DE05A28D64425001CB165 /* AddTaskView.swift */,
+				520C6C2628BA896E000DC237 /* TasksView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		520C6C2528BA807B000DC237 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				520C6C1D28BA8010000DC237 /* CalendarViewModel.swift */,
+				5247CDC428BABE6400EAF249 /* TasksViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		52F49D8328B29FE700BEED67 = {
 			isa = PBXGroup;
 			children = (
@@ -52,7 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				52F49D8F28B29FE800BEED67 /* PlanerApp.swift */,
-				52F49D9128B29FE800BEED67 /* ContentView.swift */,
+				520C6C1F28BA8029000DC237 /* Models */,
+				520C6C1C28BA8002000DC237 /* Calendar */,
+				520C6C1928BA7FD6000DC237 /* Utils */,
 				52F49D9328B29FE900BEED67 /* Assets.xcassets */,
 				52F49D9528B29FE900BEED67 /* Preview Content */,
 			);
@@ -137,8 +207,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52F49D9228B29FE800BEED67 /* ContentView.swift in Sources */,
+				525D03A028B3F42A00B7ACDB /* UIColorExtension.swift in Sources */,
+				520C6C2128BA8039000DC237 /* CalendarModel.swift in Sources */,
+				520C6C2328BA8048000DC237 /* DayModel.swift in Sources */,
+				522DE05B28D64425001CB165 /* AddTaskView.swift in Sources */,
+				520C6C2728BA896E000DC237 /* TasksView.swift in Sources */,
+				520C6C1B28BA7FED000DC237 /* DateExtensions.swift in Sources */,
+				520C6C2928BAB4F6000DC237 /* User.swift in Sources */,
+				52B19B9928BBE7260047B983 /* CodableColorExtension.swift in Sources */,
+				52F49D9228B29FE800BEED67 /* CalendarView.swift in Sources */,
 				52F49D9028B29FE800BEED67 /* PlanerApp.swift in Sources */,
+				520C6C1E28BA8010000DC237 /* CalendarViewModel.swift in Sources */,
+				5247CDC528BABE6400EAF249 /* TasksViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +355,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,6 +385,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

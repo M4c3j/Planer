@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct PlanerApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+	
+	@StateObject var user: TasksViewModel = TasksViewModel()
+	
+	var body: some Scene {
+		
+		WindowGroup {
+			ContentView()
+			.environmentObject(user)
+		}
+	}
 }
+
