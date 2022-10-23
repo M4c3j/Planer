@@ -116,13 +116,13 @@ struct AddTaskView: View {
 						Button {
 							
 							withAnimation(.easeIn(duration: 0.3)) {
-								proxy.scrollTo(1)
+//								proxy.scrollTo(1)
 								isAddingCategory.toggle()
 							}
 							if isAddingCategory {
 								DispatchQueue.main.asyncAfter(deadline: .now() + 0.31 ) {
 									withAnimation(.easeIn(duration: 0.3)) {
-										proxy.scrollTo(2, anchor: .top)
+//										proxy.scrollTo(2, anchor: .top)
 									}
 								}
 							}
@@ -163,8 +163,11 @@ struct AddTaskView: View {
 							HStack{
 								Spacer()
 								Button {
-									user.user.categories.append(Category(name: categoryNamePicker, color: categoryColorPicker, SFSymbolName: SFSymbols(rawValue: sFSymbolPicker)!))
-									self.isAddingCategory.toggle()
+									DispatchQueue.main.async {
+										user.user.categories.append(Category(name: categoryNamePicker, color: categoryColorPicker, SFSymbolName: SFSymbols(rawValue: sFSymbolPicker)!))
+										self.isAddingCategory.toggle()
+									}
+									
 								} label: {
 									Text("Confirm \(Image(systemName: "checkmark.circle"))")
 										.fontWeight(.semibold)

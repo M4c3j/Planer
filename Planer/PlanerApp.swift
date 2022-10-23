@@ -11,7 +11,6 @@ import SwiftUI
 struct PlanerApp: App {
 	
 	@StateObject var user: TasksViewModel = TasksViewModel()
-	
 	var body: some Scene {
 		
 		WindowGroup {

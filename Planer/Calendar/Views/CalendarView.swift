@@ -9,11 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
 	
+	@EnvironmentObject var user : TasksViewModel
+	
 	var body: some View {
 		TabView {
 			VStack(spacing: 16) {
 				CalendarView()
+					.environmentObject(user)
 				TasksView()
+					.environmentObject(user)
 					.frame(minHeight: 150)
 				Spacer()
 			}
@@ -103,7 +107,7 @@ struct CalendarView: View {
 				LazyVGrid(columns: column, alignment: .center, spacing: 0, pinnedViews: [.sectionHeaders]){
 					ForEach (calendarModel.daysToShowInCalendar, id: \.self) { index in
 						CalendarDaySubView(day: index.day,
-															 isSelected: calendarModel.selectedDay == Calendar(identifier: .gregorian).date(byAdding: .day, value: index.day, to: calendarModel.calendarModel.currentDate.startOfMonth())!,
+															 isSelected: calendarModel.selectedDay == Calendar(identifier: .gregorian).date(byAdding: .day, value: index.day, to: calendarModel.calendarModel.currentDate.startOfMonth())! && index.opacity == 1,
 															 colors: index.taskColors)
 						.onTapGesture {
 							if index.opacity == 1 {
@@ -145,7 +149,11 @@ struct CalendarDaySubView: View {
 	init(day: Int, isSelected: Bool, colors: [Color]) {
 		self.day = day
 		self.isSelected = isSelected
-		self.colors = colors
+		if !colors.isEmpty {
+			self.colors = colors
+		} else {
+			self.colors = [.clear, .clear]
+		}
 		self.column = {
 			self.column = []
 			for _ in colors {

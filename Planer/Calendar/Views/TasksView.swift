@@ -40,7 +40,7 @@ struct TasksView: View {
 			.listRowBackground(Color.clear)
 		
 			// MARK: - TASKS
-			
+		
 			ForEach(user.tasksToShow, id: \.self) { task in
 				SimpleTaskView(color: task.category.color, title: task.title, description: task.description, startDate: user.dateFormatter.string(from: task.startDate), endDate: "", sfSymbol: task.category.SFSymbolName.rawValue)
 					.listRowSeparator(.hidden)

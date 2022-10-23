@@ -12,9 +12,10 @@ class TasksViewModel: ObservableObject {
 	@Published var user: User = User(name: "Maciej",
 																	 tasks: [],
 																	 categories: [(Category(name: "Home", color: .green, SFSymbolName: .home)),
-																								Category(name: "Work", color: .red, SFSymbolName: .work2)]) {
+																								Category(name: "Work", color: .red, SFSymbolName: .work2)])
+	{
 		didSet {
-			populateCalendar()
+			self.populateCalendar()
 		}
 	}
 	@Published var calendarModel = CalendarModel(currentDate: Date(),
@@ -42,32 +43,36 @@ class TasksViewModel: ObservableObject {
 			return
 		}
 		self.user.tasks.append(Task(title: "Welcome", description: "We are really happy that you are using Planer", startDate: .now, endDate: hourLater, category: user.categories[0], isRepeteable: false))
-		self.user.tasks.append(Task(title: "Welcome", description: "We are really happy that you are using Planer", startDate: .now, endDate: hourLater, category: user.categories[0], isRepeteable: false))
 		dateFormatter.dateFormat = "HH:mm"
 		self.populateWeekDaysNames()
 		self.populateCalendar()
 	}
 	
 	func addTask(_ task: Task, to category: Category) {
-		if !user.categories.contains(category) {
-			print("Category not found in user.categories")
-			return
-		} else if user.tasks.isEmpty {
-			user.tasks.append(task)
-		} else if task.startDate <= user.tasks.first!.startDate {
-			user.tasks.insert(task, at: 0)
-		} else if task.startDate > user.tasks.last!.startDate {
-			user.tasks.append(task)
-		} else {
-			guard
-				let indexToInsert = user.tasks.firstIndex(where: { usersTask in
-				usersTask.startDate > task.startDate
-			}) else {
-				print("Failed to find indexToInsert")
+		DispatchQueue.main.async {
+			var user = self.user
+			if !user.categories.contains(category) {
+				print("Category not found in user.categories")
 				return
+			} else if user.tasks.isEmpty {
+				user.tasks.append(task)
+			} else if task.startDate <= user.tasks.first!.startDate {
+				user.tasks.insert(task, at: 0)
+			} else if task.startDate > user.tasks.last!.startDate {
+				user.tasks.append(task)
+			} else {
+				guard
+					let indexToInsert = user.tasks.firstIndex(where: { usersTask in
+						usersTask.startDate > task.startDate
+					}) else {
+					print("Failed to find indexToInsert")
+					return
+				}
+				user.tasks.insert(task, at: indexToInsert)
 			}
-			user.tasks.insert(task, at: indexToInsert)
+			self.user = user
 		}
+		
 	}
 	
 	func deleteTask(at offsets: IndexSet) {
@@ -104,14 +109,14 @@ class TasksViewModel: ObservableObject {
 				print("Failed to get day in populateCalendar()")
 				return
 			}
-			var daysTasks = user.tasks.filter { task in
+			let daysTasks = user.tasks.filter { task in
 				calendar.isDate(task.startDate, equalTo: day, toGranularity: .day)
 			}
 			var colors: [Color] = []
 			for task in daysTasks {
 				colors.append(task.category.color)
 			}
-			var colorsSet: Set<Color> = Set(colors)
+			let colorsSet: Set<Color> = Set(colors)
 			myCalendar.append(DayModel(day: currentMonthDay,
 																 opacity: 1,
 																 taskColors: Array(colorsSet)))
