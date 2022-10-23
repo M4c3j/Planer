@@ -1,23 +1,14 @@
-	//
-	//  TasksViewModel.swift
-	//  Planer
-	//
-	//  Created by Maciej Lipiec on 2022-08-27.
-	//
+//
+//  CalendarViewModel.swift
+//  Planer
+//
+//  Created by Maciej Lipiec on 2022-08-27.
+//
 
 import SwiftUI
 
-class TasksViewModel: ObservableObject {
-	
-	@Published var user: User = User(name: "Maciej",
-																	 tasks: [],
-																	 categories: [(Category(name: "Home", color: .green, SFSymbolName: .home)),
-																								Category(name: "Work", color: .red, SFSymbolName: .work2)])
-	{
-		didSet {
-			self.populateCalendar()
-		}
-	}
+class CalendarViewModel: ObservableObject {
+
 	@Published var calendarModel = CalendarModel(currentDate: Date(),
 																							 daysInMonth: Date().daysInMonth(),
 																							 firstWeekDay: Date().firsWeekDay(),
@@ -26,61 +17,14 @@ class TasksViewModel: ObservableObject {
 																							 currentMonthName: Date().monthName())
 	@Published var daysToShowInCalendar: [DayModel] = []
 	@Published var weekDaysNames: [String] = []
-	@Published var selectedDay: Date = .now
-	@Published var tasksInSelectedDay: [Task] = []
 	@Published var selectedDayID: UUID = UUID()
-	@Published var tasksToShow: [Task] = []
-	
-	let dateFormatter = DateFormatter()
-	
+	@Published var selectedDay: Date = .now
 	
 	init() {
-		guard
-			user.categories.isEmpty == false,
-			let hourLater = Calendar.current.date(byAdding: DateComponents(hour: 1), to: .now)
-		else {
-			print("Failed to get first category or hour later in TasksViewModel")
-			return
-		}
-		self.user.tasks.append(Task(title: "Welcome", description: "We are really happy that you are using Planer", startDate: .now, endDate: hourLater, category: user.categories[0], isRepeteable: false))
-		dateFormatter.dateFormat = "HH:mm"
 		self.populateWeekDaysNames()
 		self.populateCalendar()
 	}
-	
-	func addTask(_ task: Task, to category: Category) {
-		DispatchQueue.main.async {
-			var user = self.user
-			if !user.categories.contains(category) {
-				print("Category not found in user.categories")
-				return
-			} else if user.tasks.isEmpty {
-				user.tasks.append(task)
-			} else if task.startDate <= user.tasks.first!.startDate {
-				user.tasks.insert(task, at: 0)
-			} else if task.startDate > user.tasks.last!.startDate {
-				user.tasks.append(task)
-			} else {
-				guard
-					let indexToInsert = user.tasks.firstIndex(where: { usersTask in
-						usersTask.startDate > task.startDate
-					}) else {
-					print("Failed to find indexToInsert")
-					return
-				}
-				user.tasks.insert(task, at: indexToInsert)
-			}
-			self.user = user
-		}
-		
-	}
-	
-	func deleteTask(at offsets: IndexSet) {
-		let array = user.tasks
-		let items = Set(offsets.map {array[$0].id})
-		user.tasks.removeAll {items.contains($0.id)}
-	}
-	
+
 	func daysLeftToFillCalendar(_ days: [DayModel]) -> Int {
 		let daysLeft = 7 - (days.count % 7)
 		if daysLeft == 7 {
@@ -88,8 +32,35 @@ class TasksViewModel: ObservableObject {
 		}
 		return daysLeft
 	}
-	
+
 	func populateCalendar() {
+		var myCalendar: [DayModel] = []
+		let daysInPreviousMonth = calendarModel.previousMonth.daysInMonth()
+		let firstWeekDayInCurrentMonth = calendarModel.currentDate.firsWeekDay()
+		let daysInCurrentMonth = calendarModel.currentDate.daysInMonth()
+
+		for previousMonthDay in 1..<firstWeekDayInCurrentMonth {
+			myCalendar.append(DayModel(day: daysInPreviousMonth - firstWeekDayInCurrentMonth + 1 + previousMonthDay,
+																 opacity: 0.3,
+																 taskColors: []))
+		}
+
+		for currentMonthDay in 1...daysInCurrentMonth {
+			myCalendar.append(DayModel(day: currentMonthDay,
+																 opacity: 1,
+																 taskColors: []))
+		}
+
+		for nexMonthDay in 0..<daysLeftToFillCalendar(myCalendar) {
+			myCalendar.append(DayModel(day: nexMonthDay + 1,
+																 opacity: 0.3,
+																 taskColors: []))
+		}
+
+		self.daysToShowInCalendar = myCalendar
+	}
+	
+	func populateCalendar(user: User) {
 		var myCalendar: [DayModel] = []
 		let daysInPreviousMonth = calendarModel.previousMonth.daysInMonth()
 		let firstWeekDayInCurrentMonth = calendarModel.currentDate.firsWeekDay()
@@ -128,13 +99,9 @@ class TasksViewModel: ObservableObject {
 																 taskColors: []))
 		}
 		
-		tasksToShow = user.tasks.filter { task in
-			Calendar(identifier: .gregorian).isDate(task.startDate, equalTo: selectedDay, toGranularity: .day)
-		}
-		
 		self.daysToShowInCalendar = myCalendar
 	}
-	
+
 	func showNextMonth() {
 		let nextMonth = calendarModel.currentDate.nextMonth()
 		self.calendarModel = CalendarModel(currentDate: nextMonth,
@@ -156,7 +123,7 @@ class TasksViewModel: ObservableObject {
 																			 currentMonthName: previousMonth.monthName())
 		self.populateCalendar()
 	}
-	
+
 	func populateWeekDaysNames() {
 		var weekdays: [String] = []
 		let formatter = DateFormatter()
@@ -172,5 +139,5 @@ class TasksViewModel: ObservableObject {
 		}
 		self.weekDaysNames = weekdays
 	}
-	
+
 }

@@ -57,43 +57,6 @@ struct AddTaskView: View {
 							.datePickerStyle(.compact)
 					}
 					
-						//				Section("Category"){
-						//					HStack{
-						//						Text("Category \(Image(systemName: "tag"))")
-						//						Spacer()
-						//						Menu(category.name == "Initializing" ? "Choose  \(Image(systemName: "hand.point.up.left"))" : "\(category.name) \(Image(systemName: category.SFSymbolName.rawValue))") {
-						//							ForEach(user.user.categories) { category in
-						//								Button {
-						//									self.category = category
-						//									print(category)
-						//								} label: {
-						//									Label("\(category.name)", systemImage: category.SFSymbolName.rawValue)
-						//								}
-						//								.buttonStyle(.borderless)
-						//							}
-						//							Button {
-						//									//
-						//							} label: {
-						//								Label("Create new", systemImage: "plus")
-						//							}
-						//						}
-						//					}
-						//					Picker("Category \(Image(systemName: "tag"))", selection: $category) {
-						//						ForEach(user.user.categories, id:\.self) {
-						////							Button {
-						////								self.category = category
-						////								print(category)
-						////							} label: {
-						////								Label("\(category.name)", systemImage: category.SFSymbolName.rawValue)
-						////									.foregroundColor(.blue)
-						////							}
-						//							Text("\($0.name) \(Image(systemName: $0.SFSymbolName.rawValue))")
-						//						}
-						//					}
-						//					.pickerStyle(SegmentedPickerStyle())
-						//					.colorMultiply(category.color)
-						//				}
-					
 						// MARK: - Category section
 					Section("Category") {
 						

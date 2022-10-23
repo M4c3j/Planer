@@ -11,11 +11,14 @@ import SwiftUI
 struct PlanerApp: App {
 	
 	@StateObject var user: TasksViewModel = TasksViewModel()
+	@StateObject var calendarModel: CalendarViewModel = CalendarViewModel()
+	
 	var body: some Scene {
 		
 		WindowGroup {
-			ContentView()
+			MainView()
 			.environmentObject(user)
+			.environmentObject(calendarModel)
 		}
 	}
 }

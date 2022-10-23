@@ -6,34 +6,13 @@
 	//
 
 import SwiftUI
-
-struct ContentView: View {
-	
-	@EnvironmentObject var user : TasksViewModel
-	
-	var body: some View {
-		TabView {
-			VStack(spacing: 16) {
-				CalendarView()
-					.environmentObject(user)
-				TasksView()
-					.environmentObject(user)
-					.frame(minHeight: 150)
-				Spacer()
-			}
-		}
-	}
-}
-
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
-}
-
+import Combine
 struct CalendarView: View {
 	
-	@EnvironmentObject var calendarModel: TasksViewModel
+	@EnvironmentObject var calendarModel: CalendarViewModel
+	@EnvironmentObject var user: TasksViewModel
+	
+	var userSubscriber: AnyCancellable?
 	
 	let column: [GridItem] = [
 		GridItem(.flexible(), spacing: 4),
@@ -92,6 +71,13 @@ struct CalendarView: View {
 										.animation(.easeInOut(duration: 0.6),value: calendarModel.calendarModel.currentMonthName)
 								)
 								.padding(.vertical, 6)
+							// MARK: - Stupid trick with on change and onAppear to solve problem with 2 viewmodels
+								.onChange(of: user.user.tasks) { newValue in
+									calendarModel.populateCalendar(user: user.user)
+								}
+								.onAppear{
+									calendarModel.populateCalendar(user: user.user)
+								}
 							Button {
 								didTapNextMonth = true
 								calendarModel.showNextMonth()
@@ -120,6 +106,7 @@ struct CalendarView: View {
 					}
 				}
 			}
+				
 //			.animation(.easeInOut(duration: 0.3), value: calendarModel.daysToShowInCalendar)
 			.padding(.bottom, 8)
 			.padding(.horizontal, 8)
@@ -139,45 +126,3 @@ struct CalendarView: View {
 	}
 }
 
-struct CalendarDaySubView: View {
-	
-	let day: Int
-	let isSelected: Bool
-	let colors: [Color]
-	var column: [GridItem] = []
-	
-	init(day: Int, isSelected: Bool, colors: [Color]) {
-		self.day = day
-		self.isSelected = isSelected
-		if !colors.isEmpty {
-			self.colors = colors
-		} else {
-			self.colors = [.clear, .clear]
-		}
-		self.column = {
-			self.column = []
-			for _ in colors {
-				self.column.append(GridItem(.flexible(), spacing: 0))
-			}
-			return column
-		}()
-	}
-	
-	var body: some View {
-		VStack(spacing: 0){
-			Text("\(day)")
-				.font(.system(size: 20, weight: .thin, design: .monospaced))
-			LazyVGrid(columns: column, alignment: .center, spacing: 0) {
-				ForEach(colors, id: \.self) { color in
-					Circle()
-						.frame(width: 4)
-						.foregroundColor(color)
-				}
-			}
-		}
-		.frame(minWidth: 0, maxWidth: .infinity)
-		.padding(8)
-		.background(isSelected ? Color.secondary.opacity(0.6) : Color.clear)
-		.cornerRadius(12)
-	}
-}
