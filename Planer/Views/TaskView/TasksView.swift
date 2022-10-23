@@ -10,6 +10,7 @@ import SwiftUI
 struct TasksView: View {
 
 	@EnvironmentObject var user: TasksViewModel
+	@EnvironmentObject var calendarModel: CalendarViewModel
 	
 //	@ObservedObject var user: TasksViewModel = TasksViewModel()
 	@State private var isAddingTask = false
@@ -41,7 +42,7 @@ struct TasksView: View {
 		
 			// MARK: - TASKS
 		
-			ForEach(user.tasksToShow, id: \.self) { task in
+			ForEach(user.tasksToShow(for: calendarModel.selectedDay), id: \.self) { task in
 				SimpleTaskView(color: task.category.color, title: task.title, description: task.description, startDate: user.dateFormatter.string(from: task.startDate), endDate: "", sfSymbol: task.category.SFSymbolName.rawValue)
 					.listRowSeparator(.hidden)
 					.listSectionSeparator(.hidden)

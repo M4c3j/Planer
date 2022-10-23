@@ -7,12 +7,12 @@
 
 import SwiftUI
 import Combine
+
 struct CalendarView: View {
 	
 	@EnvironmentObject var calendarModel: CalendarViewModel
 	@EnvironmentObject var user: TasksViewModel
 	
-	var userSubscriber: AnyCancellable?
 	
 	let column: [GridItem] = [
 		GridItem(.flexible(), spacing: 4),

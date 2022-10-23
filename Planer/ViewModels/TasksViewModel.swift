@@ -83,6 +83,13 @@ class TasksViewModel: ObservableObject {
 		user.tasks.removeAll {items.contains($0.id)}
 	}
 	
+	func tasksToShow(for day: Date) -> [Task] {
+		return user.tasks.filter { task in
+			print(user.tasks)
+			return Calendar(identifier: .gregorian).isDate(task.startDate, equalTo: day, toGranularity: .day)
+		}
+	}
+	
 	func daysLeftToFillCalendar(_ days: [DayModel]) -> Int {
 		let daysLeft = 7 - (days.count % 7)
 		if daysLeft == 7 {
